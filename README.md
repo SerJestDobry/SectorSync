@@ -15,7 +15,7 @@ Plugin do Spigota/Paper (Minecraft 1.21.6), który dzieli graczy pomiędzy wiele
 
 ---
 
-## ✨ Features
+## ✨ Funkcję
 
 - 🟧 Przenoszenie graczy między sektorami z zachowaniem stanu (ekwipunek, HP, XP, efekty)
 - 🔵 Synchronizacja danych gracza w czasie rzeczywistym przez Redis
@@ -29,16 +29,6 @@ Plugin do Spigota/Paper (Minecraft 1.21.6), który dzieli graczy pomiędzy wiele
 - ☕ Java 21+
 - 🧱 Spigot / Paper 1.21.6
 - 🗄️ Serwer Redis (lokalny lub w sieci wewnętrznej)
-
----
-
-## ⚙️ Instalacja
-
-1. Zbuduj plugin (`mvn package` / `gradle build`) lub pobierz gotowy `.jar`.
-2. Wrzuć plik `.jar` do folderu `plugins/` na każdym serwerze-sektorze.
-3. Uruchom serwer, aby wygenerował się `config.yml`.
-4. Skonfiguruj `config.yml` — w szczególności dane Redis i unikalną nazwę sektora dla każdego serwera.
-5. Zrestartuj serwer.
 
 ---
 
