@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=Wlg7rMehLyc
+
 SectorSync pozwala uruchomić kilka niezależnych serwerów Minecraft, które współdzielą wspólną bazę danych graczy w Redis. Dzięki temu gracz może zostać przeniesiony między sektorami z zachowaniem stanu (ekwipunek, zdrowie, doświadczenie, efekty mikstur, pozycja itd.), a administratorzy mogą monitorować status każdego sektora (liczba graczy, TPS, aktywność) z jednego miejsca.
 
 Projekt jest we wczesnej fazie rozwoju
