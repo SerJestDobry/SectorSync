@@ -1,0 +1,12 @@
+sectors:
+  name: 'sektor_01'
+  tps-warning: 17.0
+  max-players: 2
+  auto-register: true
+
+
+redis:
+  host: 'localhost'
+  port: 6379
+  password: ''
+  timeout: 5000
