@@ -1,5 +1,6 @@
 # 🌐 SectorSync
 
+
 Plugin do Spigota/Paper (Minecraft 1.21.6), który dzieli graczy pomiędzy wiele instancji serwera ("sektorów") i synchronizuje ich dane (ekwipunek, statystyki, lokalizację) przez Redis.
 
 ---
@@ -8,8 +9,9 @@ Plugin do Spigota/Paper (Minecraft 1.21.6), który dzieli graczy pomiędzy wiele
 > **Projekt jest obecnie aktywnie rozwijany.**
 >
 > ⚠️ Niektóre funkcje mogą być niekompletne lub niestabilne.
+> 
 > ❌ Nie używaj tej wersji na głównym/produkcyjnym serwerze.
-> ✅ Używaj wyłącznie do testów i developmentu.
+
 
 ---
 
@@ -61,12 +63,48 @@ redis:
 
 ---
 
+## 🛠️ Konfiguracja (`messagess.yml`)
+
+```yaml
+usage:
+  main: '&cUżycie: /sectors <list|info|send|remove>'
+  unknown-command: '&cNieznana komenda. Dostępne: list, info, send, remove'
+  info: '&cUżycie: /sectors info <nazwa sektoru>'
+  send: '&cUżycie: /sectors send <gracz> <nazwa sektoru>'
+  remove: '&cUżycie: /sectors remove <nazwa sektora>'
+
+errors:
+  no-permission: '&cNie masz uprawnień!'
+  send-failed: '&cNie udało się przenieść gracza!'
+  remove-failed: '&cNie udało się usunąć sektora! Upewnij się że sektor istnieje i nie ma aktywnych graczy.'
+
+list:
+  header: '&6Lista sektorów (&a{count}&6):'
+  entry: '&e- {sector} &7(Graczy: {count})'
+
+info:
+  header: '&6=== Informacje o sektorze &e{sector}&6 ==='
+  status: '&7Status: &a{status}'
+  tps: '&7TPS: &a{tps}'
+  players-online: '&7Graczy online: &a{count}'
+  last-update: '&7Ostatnia aktywność: &a{time}'
+  players-header: '&7Gracze online:'
+  players-entry: '&e- {player}'
+  players-more: '&7... i {count} więcej'
+
+success:
+  send: '&aPomyślnie przeniesiono gracza {player} do sektora {sector}'
+  remove: '&aSektor {sector} został usunięty!'
+```
+
+---
+
 ## 🎮 Komendy i uprawnienia
 
 | Komenda | Opis | Uprawnienie |
 |---|---|---|
-| `/sectors list` | Lista wszystkich zarejestrowanych sektorów | brak |
-| `/sectors info <sektor>` | Szczegóły sektora (status, TPS, gracze) | brak |
+| `/sectors list` | Lista wszystkich zarejestrowanych sektorów |  `sectors.list`  |
+| `/sectors info <sektor>` | Szczegóły sektora (status, TPS, gracze) |  `sectors.info`  |
 | `/sectors send <gracz> <sektor>` | Przeniesienie gracza do innego sektora | `sectors.admin` |
 | `/sectors remove <sektor>` | Usunięcie pustego sektora | `sectors.admin` |
 
@@ -81,5 +119,3 @@ redis:
 ---
 
 ## 📄 Licencja
-
-Do uzupełnienia (np. MIT).
