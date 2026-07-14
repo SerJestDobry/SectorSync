@@ -1,21 +1,85 @@
-https://www.youtube.com/watch?v=Wlg7rMehLyc
+# 🌐 SectorSync
 
-SectorSync pozwala uruchomić kilka niezależnych serwerów Minecraft, które współdzielą wspólną bazę danych graczy w Redis. Dzięki temu gracz może zostać przeniesiony między sektorami z zachowaniem stanu (ekwipunek, zdrowie, doświadczenie, efekty mikstur, pozycja itd.), a administratorzy mogą monitorować status każdego sektora (liczba graczy, TPS, aktywność) z jednego miejsca.
+Plugin do Spigota/Paper (Minecraft 1.21.6), który dzieli graczy pomiędzy wiele instancji serwera ("sektorów") i synchronizuje ich dane (ekwipunek, statystyki, lokalizację) przez Redis.
 
-Projekt jest we wczesnej fazie rozwoju
+---
 
-<img width="708" height="243" alt="image" src="https://github.com/user-attachments/assets/de568947-1c59-4837-b6e2-e735ab5a9df4" />
+> [!WARNING]
+> **Projekt jest obecnie aktywnie rozwijany.**
+>
+> ⚠️ Niektóre funkcje mogą być niekompletne lub niestabilne.
+> ❌ Nie używaj tej wersji na głównym/produkcyjnym serwerze.
+> ✅ Używaj wyłącznie do testów i developmentu.
 
+---
 
+## ✨ Features
 
-Wymagania:
-Java 21+
-Spigot / Paper 1.21.6
-Serwer Redis
+- 🟧 Przenoszenie graczy między sektorami z zachowaniem stanu (ekwipunek, HP, XP, efekty)
+- 🔵 Synchronizacja danych gracza w czasie rzeczywistym przez Redis
+- 🟠 Współdzielone i synchronizowane informacje o sektorach (status, TPS, liczba graczy)
+- 💬 Panel administracyjny (`/sectors`) do zarządzania sektorami
 
-<img width="234" height="348" alt="image" src="https://github.com/user-attachments/assets/e94459a0-80b1-49c4-92a6-1e6270a5e769" />
+---
 
+## 📦 Wymagania
 
+- ☕ Java 21+
+- 🧱 Spigot / Paper 1.21.6
+- 🗄️ Serwer Redis (lokalny lub w sieci wewnętrznej)
 
-<img width="719" height="356" alt="image" src="https://github.com/user-attachments/assets/d46c1434-8246-4858-837e-0f058b6dcafa" />
+---
 
+## ⚙️ Instalacja
+
+1. Zbuduj plugin (`mvn package` / `gradle build`) lub pobierz gotowy `.jar`.
+2. Wrzuć plik `.jar` do folderu `plugins/` na każdym serwerze-sektorze.
+3. Uruchom serwer, aby wygenerował się `config.yml`.
+4. Skonfiguruj `config.yml` — w szczególności dane Redis i unikalną nazwę sektora dla każdego serwera.
+5. Zrestartuj serwer.
+
+---
+
+## 🛠️ Konfiguracja (`config.yml`)
+
+```yaml
+sectors:
+  name: 'sektor_01'        # unikalna nazwa sektora dla tego serwera
+  tps-warning: 15.0        # próg TPS, poniżej którego sektor oznaczany jest jako "warning"
+  max-players: 200
+  auto-register: true
+
+redis:
+  host: 'localhost'
+  port: 6379
+  password: ''             # zalecane ustawienie hasła w środowisku produkcyjnym
+  timeout: 5000
+```
+
+> [!CAUTION]
+> Redis powinien być zabezpieczony hasłem i niedostępny publicznie (firewall / sieć wewnętrzna). Instancja bez hasła w środowisku produkcyjnym naraża dane wszystkich graczy.
+
+---
+
+## 🎮 Komendy i uprawnienia
+
+| Komenda | Opis | Uprawnienie |
+|---|---|---|
+| `/sectors list` | Lista wszystkich zarejestrowanych sektorów | brak |
+| `/sectors info <sektor>` | Szczegóły sektora (status, TPS, gracze) | brak |
+| `/sectors send <gracz> <sektor>` | Przeniesienie gracza do innego sektora | `sectors.admin` |
+| `/sectors remove <sektor>` | Usunięcie pustego sektora | `sectors.admin` |
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Transfer graczy między fizycznie osobnymi serwerami (BungeeCord/Velocity)
+- [ ] Watchdog wykrywający awarię sektora i automatyczny failover graczy
+- [ ] Dokładniejszy pomiar TPS
+
+---
+
+## 📄 Licencja
+
+Do uzupełnienia (np. MIT).
